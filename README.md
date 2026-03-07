@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Trademarkia Semantic Search API
 
 A highly optimized semantic search engine designed specifically for the 20 Newsgroups dataset. It utilizes non-linear manifold projection, true density-based fuzzy clustering, and a custom multi-table LSH (Locality Sensitive Hashing) semantic cache built from first principles (No Redis).
@@ -13,7 +12,7 @@ A highly optimized semantic search engine designed specifically for the 20 Newsg
 
 ---
 
-## 🚀 Running Locally
+## Running Locally
 
 ### Step 1. Generate Models (Colab or Local)
 You must initialize the Vector DB and Clustering graphs before running the backend.
@@ -32,7 +31,7 @@ uvicorn main:app
 
 ---
 
-## 🐳 Running via Docker
+## Running via Docker
 
 The Docker configuration assumes you have already run `Step 1` above to generate the artifacts in your local `models/` folder. This skips building 200MB+ models into the baseline image layer, significantly speeding up container deployment.
 
@@ -40,6 +39,4 @@ The Docker configuration assumes you have already run `Step 1` above to generate
 docker-compose up --build
 ```
 Your cache and API routes are live on `127.0.0.1:8000` via Volume mapping!
-=======
-# Trademarkia
->>>>>>> c623423e9746520aadb366ebba52eb31b9fda205
+
