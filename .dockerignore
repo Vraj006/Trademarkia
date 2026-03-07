@@ -1,0 +1,19 @@
+# Ignore heavy ML artifacts to keep Docker image size small
+# They are dynamically mounted via docker-compose.yml instead!
+models/
+analysis_outputs/
+
+# Ignore python caches and environments
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+.env
+
+# Git
+.git
+.gitignore
+
+# Jupyter
+.ipynb_checkpoints
