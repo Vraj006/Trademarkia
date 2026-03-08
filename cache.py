@@ -19,8 +19,8 @@ class LSHSemanticCache:
         self.hit_count = 0
         self.miss_count = 0
         
-        self.alpha_embedding = 0.70
-        self.alpha_cluster = 0.30
+        self.alpha_embedding = 0.90
+        self.alpha_cluster = 0.10
 
     def _hash_vector(self, embedding, table_idx):
         projections = np.dot(embedding, self.hyperplanes[table_idx])
@@ -32,8 +32,14 @@ class LSHSemanticCache:
     def _distribution_similarity(self, dist1, dist2):
         d1 = np.array(dist1)
         d2 = np.array(dist2)
-        d1_norm = d1 / (np.linalg.norm(d1) + 1e-9)
-        d2_norm = d2 / (np.linalg.norm(d2) + 1e-9)
+        n1 = np.linalg.norm(d1)
+        n2 = np.linalg.norm(d2)
+        if n1 == 0 and n2 == 0:
+            return 1.0
+        elif n1 == 0 or n2 == 0:
+            return 0.0
+        d1_norm = d1 / n1
+        d2_norm = d2 / n2
         return np.dot(d1_norm, d2_norm)
 
     def get(self, query_emb, cluster_distribution):

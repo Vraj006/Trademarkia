@@ -29,14 +29,3 @@ uvicorn main:app
 ```
 **Access the local interactive Swagger UI** at: `http://127.0.0.1:8000/docs`
 
----
-
-## Running via Docker
-
-The Docker configuration assumes you have already run `Step 1` above to generate the artifacts in your local `models/` folder. This skips building 200MB+ models into the baseline image layer, significantly speeding up container deployment.
-
-```bash
-docker-compose up --build
-```
-Your cache and API routes are live on `127.0.0.1:8000` via Volume mapping!
-

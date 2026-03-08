@@ -51,8 +51,8 @@ async def lifespan(app: FastAPI):
             
         app_state["cache"] = LSHSemanticCache(
             embedding_dim=384, 
-            num_hash_bits=16, 
-            similarity_threshold=0.87, 
+            num_hash_bits=8, 
+            similarity_threshold=0.75, 
             max_size=1000
         )
     
@@ -60,6 +60,12 @@ async def lifespan(app: FastAPI):
     print("Shutting down service...")
 
 app = FastAPI(lifespan=lifespan, title="Trademarkia Semantic Search")
+
+from fastapi.responses import RedirectResponse
+
+@app.get("/", include_in_schema=False)
+async def redirect_to_docs():
+    return RedirectResponse(url="/docs")
 
 @app.post("/query", response_model=QueryResponse)
 async def query_endpoint(req: QueryRequest):
